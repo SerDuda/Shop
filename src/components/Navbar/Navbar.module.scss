@@ -1,0 +1,119 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 20%;
+
+    &__shop {
+        transition: all .4s ease;
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    &__categories {
+        transition: all .4s ease;
+        cursor: pointer;
+        position: relative;
+
+        &:hover {
+            color: white;
+        }
+
+        &__list {
+            display: none;
+
+        }
+
+        &:hover &__list {
+            display: block;
+            position: absolute;
+            list-style-type: none;
+            background-color: rgb(222, 1, 252);
+            color: black;
+            border-radius: 10px;
+            position: absolute;
+            left: 102%;
+            top: 35%;
+        }
+    }
+}
+
+.list__item {
+    padding: 5px;
+}
+
+.list__item:hover {
+    color: white;
+}
+
+.linkStyle {
+    text-decoration: none;
+    color: black;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 30%;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.link__svg:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+    transition: all 0.4s ease;
+}
+
+.cart__btn {
+    padding: 5px;
+    border: 2px solid black;
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all .4s ease;
+
+    display: flex;
+
+    &:hover {
+        background-color: rgb(222, 1, 252);
+        color: white;
+        border: 2px solid white;
+        box-shadow: 0 0 10px 3px white;
+    }
+}
+
+.cartIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart__btn_count {
+    font-size: 22px;
+    margin-left: 10px;
+}

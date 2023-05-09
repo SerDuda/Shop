@@ -1,0 +1,136 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin-top: 4%;
+}
+
+.container {
+    background-color: rgb(222, 1, 252);
+    width: 80vw;
+    height: 70vh;
+    display: flex;
+    padding: 3%;
+    border-radius: 10px;
+}
+
+.img {
+    width: 40%;
+
+    &__link {
+        width: 90%;
+        border-radius: 10px;
+        height: 90%;
+    }
+}
+
+.mainInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 60%;
+
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.description,
+.brand {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.price {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    font-size: 18px;
+
+    &__main {
+        text-decoration: line-through;
+        text-decoration-color: white;
+    }
+}
+
+.product_trade {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.product_count {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 150px;
+    border: 1px solid black;
+    padding: 1%;
+    border-radius: 7px;
+}
+
+.btn__count {
+    color: black;
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 7px;
+    padding: 5px 10px;
+    transition: all .4s ease;
+    font-weight: 600;
+
+    &:hover {
+        background-color: rgb(222, 1, 252);
+        color: white;
+        border: 2px solid white;
+        box-shadow: 0 0 10px 3px white;
+        cursor: pointer;
+    }
+}
+
+.btn__add {
+    color: black;
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all .4s ease;
+    font-weight: 600;
+
+    &:hover {
+        background-color: rgb(222, 1, 252);
+        color: white;
+        border: 2px solid white;
+        box-shadow: 0 0 10px 3px white;
+        cursor: pointer;
+    }
+}
+
+.suggest {
+    background: inherit;
+    width: 80%;
+    margin-bottom: auto;
+
+    &__title {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 5% 0 0 10px;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    &__products {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: inherit;
+        width: 100%;
+    }
+}
