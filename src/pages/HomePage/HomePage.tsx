@@ -6,9 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getProducts, getProductsStatus, fetchProducts } from '../../store/productSlice';
 import { STATUS } from '../../utils/status';
 import Loader from '../../utils/Loader/Loader';
+import { useAppDispatch } from '../../store';
 
-const HomePage = () => {
-    const dispatch = useDispatch();
+const HomePage: React.FC = () => {
+    const dispatch = useAppDispatch();
     const products = useSelector(getProducts)
     const productsStatus = useSelector(getProductsStatus)
 

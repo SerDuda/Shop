@@ -9,7 +9,7 @@ import { getCartTotal } from '../../store/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaShoppingCart } from "react-icons/fa";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
     const dispatch = useDispatch();
     const itemsCount = useSelector((state) => state.cart.itemsCount)
     const carts = useSelector((state) => state.cart.carts)

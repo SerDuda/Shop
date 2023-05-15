@@ -1,5 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+type CartType = {
+    id: number;
+    title: string;
+    thumbnail: string;
+    price: number;
+    quantity: number;
+    totalPrice: number;
+    discountPrice: number;
+    stock: number;
+}
+
+interface IStateCart {
+    // carts: () => CartType[],
+    carts: CartType[],
+    itemsCount: number,
+    totalAmount: number,
+    isModal: boolean
+}
+
 const fetchFromLocalStorage = () => {
     const cart = localStorage.getItem('cart');
     if(!cart) return [];
@@ -7,11 +26,11 @@ const fetchFromLocalStorage = () => {
     return JSON.parse(cart);
 }
 
-const storeInLocalStorage = (data) => {
+const storeInLocalStorage = (data: CartType) => {
     localStorage.setItem('cart', JSON.stringify(data));
 }
 
-const initialState = {
+const initialState: IStateCart = {
     carts: fetchFromLocalStorage(),
     itemsCount: 0,
     totalAmount: 0,
@@ -54,7 +73,7 @@ const cartSlice = createSlice({
             storeInLocalStorage(state.carts)
         },
         getCartTotal: (state) => {
-            state.totalAmount = state.carts.reduce((total, cart) => {
+            state.totalAmount = state.carts.reduce((total: number, cart) => {
                 return total += cart.totalPrice
             }, 0)
 

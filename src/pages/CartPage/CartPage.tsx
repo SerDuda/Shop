@@ -4,18 +4,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { formatPrice } from '../../utils/helpers';
 import { clearCart, toggleCartQty, removeCart } from '../../store/cartSlice';
 import { Link } from 'react-router-dom';
-import cartEmpty from '../../assets/images/cart5.png'
+import emptyCart from '../../assets/images/empty_cart.png'
+import { RootState } from '../../store';
 
-const CartPage = () => {
+const CartPage: React.FC = () => {
     const dispatch = useDispatch()
-    const { totalAmount } = useSelector((state) => state.cart)
-    const carts = useSelector(state => state.cart.carts)
+    const { totalAmount } = useSelector((state: RootState) => state.cart)
+    const carts = useSelector((state: RootState) => state.cart.carts)
 
     if (carts.length === 0) {
         return (
             <div className={styles.emptycart}>
                 <div className={styles.container__empty}>
-                    <img src={cartEmpty} alt="" className={styles.empty_cart__img} />
+                    <img src={emptyCart} alt="" className={styles.empty_cart__img} />
                     <p className={styles.empty_cart__title}>Your shopping cart is empty.</p>
                     <Link to={'/'} className={styles.empty_cart__link}>
                         Go shopping

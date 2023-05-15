@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles.module.scss';
 import { AiOutlineCheck } from "react-icons/ai";
 
-const Modal = () => {
+const Modal: React.FC = () => {
     return (
         <div className={styles.main}>
             <div className={styles.container}>

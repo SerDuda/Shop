@@ -12,20 +12,36 @@ import { formatPrice } from '../../utils/helpers';
 import Modal from '../../components/Modal/Modal';
 import Product from '../../components/Product/Product'
 import Error from '../../components/Error/Error';
+import { RootState, useAppDispatch } from '../../store';
 
 
-const ProductPage = () => {
+export type ProductTypeItem = {
+    id: number;
+    title: string;
+    thumbnail: string;
+    brand: string;
+    rating: number;
+    price: number;
+    stock: number;
+    discountPercentage: number;
+    category: string;
+    description: string;
+    discountPrice: number;
+}
+
+const ProductPage: React.FC = () => {
     const { id } = useParams()
-    const product = useSelector(getProduct)
+    const product = useSelector(getProduct) as ProductTypeItem
     const productStatus = useSelector(getProductStatus)
-    const modalMassege = useSelector((state) => state.cart.isModal)
+    const modalMassege = useSelector((state: RootState) => state.cart.isModal)
     const suggestProducts = useSelector(getSuggestProducts)
     const suggestStatus = useSelector(getSuggestStatus)
-    const dispatch = useDispatch()
-    const [quantity, setQuantity] = useState(1)
+    const dispatch = useAppDispatch()
+    const [quantity, setQuantity] = useState<number>(1)
+
 
     useEffect(() => {
-        dispatch(fetchProduct(id));
+            dispatch(fetchProduct(Number(id))); 
 
         if (modalMassege) {
             setTimeout(() => {
@@ -54,9 +70,9 @@ const ProductPage = () => {
         })
     }
 
-    const addToCartHandler = (product) => {
+    const addToCartHandler = (product: ProductTypeItem) => {
         let discountPrice = discountedPrice(product);
-        let totalPrice = quantity * discountPrice;
+        let totalPrice = quantity * Number(discountPrice);
 
         dispatch(addToCart({
             ...product,

@@ -6,11 +6,12 @@ import { STATUS } from '../../../utils/status';
 import Loader from '../../../utils/Loader/Loader';
 import styles from './styles.module.scss'
 import Error from '../../../components/Error/Error';
+import { RootState } from '../../../store';
 
-const Laptops = () => {
+const Laptops: React.FC = () => {
     const dispatch = useDispatch();
-    const laptops = useSelector((state) => state.category.category);
-    const laptopsStatus = useSelector((state) => state.category.categoryStatus);
+    const laptops = useSelector((state: RootState) => state.category.category);
+    const laptopsStatus = useSelector((state: RootState) => state.category.categoryStatus);
 
     useEffect(() => {
         dispatch(fetchCategory('laptops'))

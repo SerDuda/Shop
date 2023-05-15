@@ -4,8 +4,15 @@ import { formatPrice } from '../../utils/helpers';
 import { discountedPrice } from '../../utils/discountPrice';
 import { Link } from 'react-router-dom';
 import Raiting from '../../utils/raiting';
+import { ProductType } from '../../store/productSlice';
 
-const Product = ({ product }) => {
+
+
+interface IProduct {
+    product: ProductType
+}
+
+const Product: React.FC<IProduct> = ({ product }) => {
     return (
         <div className={styles.main}>
             <div className={styles.container}>
@@ -27,7 +34,6 @@ const Product = ({ product }) => {
                 </div>
             </div>
         </div>
-
     );
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { BiCommentError } from "react-icons/bi";
 import styles from './styles.module.scss'
 
-const Error = () => {
+const Error: React.FC = () => {
     return (
         <div className={styles.error}>
             <div className={styles.error__message}>
