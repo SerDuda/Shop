@@ -60,18 +60,26 @@ const CartPage: React.FC = () => {
                                     <button
                                         className={styles.plus}
                                         // onClick={() => dispatch(toggleCartQty({ id: product?.id, type: "INC" }))}
+                                        // onClick={() => dispatch(toggleCartQty({
+                                        //     id: product?.id, type: "INC",
+                                        //     title: '',
+                                        //     thumbnail: '',
+                                        //     price: 0,
+                                        //     quantity: 0,
+                                        //     totalPrice: 0,
+                                        //     discountPrice: 0,
+                                        //     stock: 0
+                                        // }))}
                                         onClick={() => dispatch(toggleCartQty({
                                             id: product?.id, type: "INC",
-                                            title: '',
-                                            thumbnail: '',
-                                            price: 0,
-                                            quantity: 0,
-                                            totalPrice: 0,
-                                            discountPrice: 0,
-                                            stock: 0
-                                        }
-                                        // as CartType
-                                        ))}
+                                            title: product?.title,
+                                            thumbnail: product?.thumbnail,
+                                            price: product?.price,
+                                            quantity: product?.quantity,
+                                            totalPrice: product?.totalPrice,
+                                            discountPrice: product?.discountPrice,
+                                            stock: product?.stock
+                                        }as CartType))}
                                     >+</button>
                                 </div>
                                 <div className={styles.btn__delete}>

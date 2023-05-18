@@ -11,7 +11,7 @@ interface IProduct {
 }
 
 const Product: React.FC<IProduct> = ({ product }) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handlerProduct = () => {
         navigate(`/product/${product.id}`, { state: product })
