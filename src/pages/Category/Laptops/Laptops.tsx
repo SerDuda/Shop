@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import { fetchCategory } from '../../../store/categorySlice';
 import Product from '../../../components/Product/Product'
 import { STATUS } from '../../../utils/status';
 import Loader from '../../../utils/Loader/Loader';
 import styles from './styles.module.scss'
 import Error from '../../../components/Error/Error';
-import { RootState } from '../../../store';
+import { RootState, useAppDispatch } from '../../../store';
 
 const Laptops: React.FC = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const laptops = useSelector((state: RootState) => state.category.category);
     const laptopsStatus = useSelector((state: RootState) => state.category.categoryStatus);
 

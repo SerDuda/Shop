@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-type CartType = {
+export type CartType = {
     id: number;
     title: string;
     thumbnail: string;
@@ -9,10 +9,11 @@ type CartType = {
     totalPrice: number;
     discountPrice: number;
     stock: number;
+    type?: string;
 }
 
 interface IStateCart {
-    // carts: () => CartType[],
+    // carts: () => {},
     carts: CartType[],
     itemsCount: number,
     totalAmount: number,
@@ -26,7 +27,7 @@ const fetchFromLocalStorage = () => {
     return JSON.parse(cart);
 }
 
-const storeInLocalStorage = (data: CartType) => {
+const storeInLocalStorage = (data: CartType[]) => {
     localStorage.setItem('cart', JSON.stringify(data));
 }
 
@@ -41,13 +42,13 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addToCart: (state, action) => {
-            const isItemInCart = state.carts.find(item => item.id === action.payload.id)
+        addToCart: (state, {payload}: PayloadAction<CartType>) => {
+            const isItemInCart = state.carts.find(item => item.id === payload.id)
 
             if (isItemInCart) {
                 const newCart = state.carts.map(item => {
-                    if (item.id === action.payload.id) {
-                        let newQty = item.quantity + action.payload.quantity;
+                    if (item.id === payload.id) {
+                        let newQty = item.quantity + payload.quantity;
                         let newTotalPrice = newQty * item.price;
 
                         return { ...item, quantity: newQty, totalPrice: newTotalPrice }
@@ -59,12 +60,12 @@ const cartSlice = createSlice({
                 state.carts = newCart;
                 storeInLocalStorage(state.carts)
             } else {
-                state.carts.push(action.payload);
+                state.carts.push(payload);
                 storeInLocalStorage(state.carts)
             }
         },
-        removeCart: (state, action) => {
-            const newCartLength = state.carts.filter(item => item.id !== action.payload.id)
+        removeCart: (state, {payload}: PayloadAction<CartType>) => {
+            const newCartLength = state.carts.filter(item => item.id !== payload.id)
             state.carts = newCartLength
             storeInLocalStorage(state.carts)
         },
@@ -73,25 +74,25 @@ const cartSlice = createSlice({
             storeInLocalStorage(state.carts)
         },
         getCartTotal: (state) => {
-            state.totalAmount = state.carts.reduce((total: number, cart) => {
+            state.totalAmount = state.carts.reduce((total, cart) => {
                 return total += cart.totalPrice
             }, 0)
 
             state.itemsCount = state.carts.length
         },
-        toggleCartQty: (state, action) => {
+        toggleCartQty: (state, {payload}: PayloadAction<CartType>) => {
             const countItem = state.carts.map(item => {
-                if(item.id === action.payload.id) {
+                if(item.id === payload.id) {
                     let qty = item.quantity;
                     let newTotalPrice = item.totalPrice
 
-                    if(action.payload.type === 'DEC') {
+                    if(payload.type === 'DEC') {
                         qty--;
                         if(qty < 1) qty = 1;
                         newTotalPrice = qty * item.discountPrice
                     }
 
-                    if(action.payload.type === 'INC') {
+                    if(payload.type === 'INC') {
                         qty++;
                         if(qty === item.stock) qty = item.stock;
                         newTotalPrice = qty * item.discountPrice

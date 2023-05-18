@@ -6,13 +6,14 @@ import facebook from '../../assets/icons/facebook.svg'
 import twitch from '../../assets/icons/twitch.svg'
 import { Link } from 'react-router-dom';
 import { getCartTotal } from '../../store/cartSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { FaShoppingCart } from "react-icons/fa";
+import { RootState, useAppDispatch } from '../../store';
 
 const Navbar: React.FC = () => {
-    const dispatch = useDispatch();
-    const itemsCount = useSelector((state) => state.cart.itemsCount)
-    const carts = useSelector((state) => state.cart.carts)
+    const dispatch = useAppDispatch();
+    const itemsCount = useSelector((state: RootState) => state.cart.itemsCount)
+    const carts = useSelector((state: RootState) => state.cart.carts)
 
     useEffect(() => {
         dispatch(getCartTotal())

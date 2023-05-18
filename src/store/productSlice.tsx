@@ -5,6 +5,7 @@ import { RootState } from ".";
 
 
 export type ProductType = {
+    category: string;
     id: number;
     title: string;
     thumbnail: string;
@@ -75,6 +76,12 @@ const productSlice = createSlice({
     }
 })
 
+// export const fetchProducts = createAsyncThunk<ProductType[], number>('product/fetchProducts', async(limit) => {
+//     const res = await fetch(`${URL}products?limit=${limit}`);
+//     const data: ProductType[] = await res.json()
+
+//     return data.products
+// })
 
 export const fetchProducts = createAsyncThunk<ProductType[], number>('product/fetchProducts', async(limit) => {
     const res = await fetch(`${URL}products?limit=${limit}`);
@@ -83,6 +90,7 @@ export const fetchProducts = createAsyncThunk<ProductType[], number>('product/fe
 
     return data
 })
+
 
 export const fetchProduct = createAsyncThunk<ProductType, number>('product/fetchProduct', async(id) => {
     const res = await fetch(`${URL}products/${id}`);

@@ -6,10 +6,10 @@ import { STATUS } from '../../../utils/status';
 import Loader from '../../../utils/Loader/Loader';
 import styles from './styles.module.scss'
 import Error from '../../../components/Error/Error';
-import { RootState } from '../../../store';
+import { RootState, useAppDispatch } from '../../../store';
 
 const AllProducts: React.FC = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const allCategories = useSelector((state: RootState) => state.category.allCategories);
     const allCategoriesStatus = useSelector((state: RootState) => state.category.allCategoriesStatus);
 

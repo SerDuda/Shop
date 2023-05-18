@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { STATUS } from '../../utils/status';
 import Loader from '../../utils/Loader/Loader';
-import Raiting from '../../utils/raiting';
+import Raiting from '../../utils/rating';
 import { discountedPrice } from '../../utils/discountPrice';
 import { formatPrice } from '../../utils/helpers';
 import Modal from '../../components/Modal/Modal';
@@ -41,7 +41,7 @@ const ProductPage: React.FC = () => {
 
 
     useEffect(() => {
-            dispatch(fetchProduct(Number(id))); 
+        dispatch(fetchProduct(Number(id)));
 
         if (modalMassege) {
             setTimeout(() => {
@@ -78,7 +78,7 @@ const ProductPage: React.FC = () => {
             ...product,
             quantity: quantity,
             totalPrice,
-            discountPrice
+            discountPrice: Number(discountPrice)
         }))
         dispatch(isModalCartOn())
     }
@@ -105,7 +105,7 @@ const ProductPage: React.FC = () => {
                         <div className={styles.rating}><Raiting rating={product?.rating} /></div>
                         <div className={styles.price}>
                             <div className={styles.price__main}>{formatPrice(product?.price)}</div>
-                            <div className={styles.price__discount}>{formatPrice(discountedPrice(product))}</div>
+                            <div className={styles.price__discount}>{formatPrice(Number(discountedPrice(product)))}</div>
                         </div>
                         <div className={styles.product_trade}>
                             <div className={styles.product_count}>
@@ -129,7 +129,7 @@ const ProductPage: React.FC = () => {
                         suggestStatus === STATUS.LOADING ? <Loader /> : (
                             suggestOfProducts.map(item => {
                                 return (
-                                        <Product key={item.id} product={item}/>
+                                    <Product key={item.id} product={item} />
                                 )
                             })
                         )

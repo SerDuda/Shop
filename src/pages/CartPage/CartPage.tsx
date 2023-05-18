@@ -1,14 +1,15 @@
 import React from 'react';
 import styles from './CartPage.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { formatPrice } from '../../utils/helpers';
 import { clearCart, toggleCartQty, removeCart } from '../../store/cartSlice';
 import { Link } from 'react-router-dom';
 import emptyCart from '../../assets/images/empty_cart.png'
-import { RootState } from '../../store';
+import { RootState, useAppDispatch } from '../../store';
+import { CartType } from '../../store/cartSlice';
 
 const CartPage: React.FC = () => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const { totalAmount } = useSelector((state: RootState) => state.cart)
     const carts = useSelector((state: RootState) => state.cart.carts)
 
@@ -43,12 +44,34 @@ const CartPage: React.FC = () => {
                                 <div className={styles.quantityBtn}>
                                     <button
                                         className={styles.minus}
-                                        onClick={() => dispatch(toggleCartQty({ id: product?.id, type: "DEC" }))}
+                                        // onClick={() => dispatch(toggleCartQty({ id: product?.id, type: "DEC" }))}
+                                        onClick={() => dispatch(toggleCartQty({
+                                            id: product?.id, type: "DEC",
+                                            title: product?.title,
+                                            thumbnail: product?.thumbnail,
+                                            price: product?.price,
+                                            quantity: product?.quantity,
+                                            totalPrice: product?.totalPrice,
+                                            discountPrice: product?.discountPrice,
+                                            stock: product?.stock
+                                        }as CartType))}
                                     >-</button>
                                     <div className={styles.count}>{product?.quantity}</div>
                                     <button
                                         className={styles.plus}
-                                        onClick={() => dispatch(toggleCartQty({ id: product?.id, type: "INC" }))}
+                                        // onClick={() => dispatch(toggleCartQty({ id: product?.id, type: "INC" }))}
+                                        onClick={() => dispatch(toggleCartQty({
+                                            id: product?.id, type: "INC",
+                                            title: '',
+                                            thumbnail: '',
+                                            price: 0,
+                                            quantity: 0,
+                                            totalPrice: 0,
+                                            discountPrice: 0,
+                                            stock: 0
+                                        }
+                                        // as CartType
+                                        ))}
                                     >+</button>
                                 </div>
                                 <div className={styles.btn__delete}>

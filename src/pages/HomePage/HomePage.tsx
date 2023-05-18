@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import styles from './HomePage.module.scss'
 import Product from '../../components/Product/Product'
 import Error from '../../components/Error/Error';
-import { useSelector, useDispatch } from 'react-redux';
-import { getProducts, getProductsStatus, fetchProducts } from '../../store/productSlice';
+import { useSelector } from 'react-redux';
+import { getProducts, getProductsStatus, fetchProducts, ProductType } from '../../store/productSlice';
 import { STATUS } from '../../utils/status';
 import Loader from '../../utils/Loader/Loader';
 import { useAppDispatch } from '../../store';
+import { ProductTypeItem } from '../ProductPage/ProductPage';
 
 const HomePage: React.FC = () => {
     const dispatch = useAppDispatch();
